@@ -22,4 +22,27 @@ window.onload = function(){
             }
         }
     })
+    var cbtn = document.getElementById('cities')
+    cbtn.addEventListener("click", function(e){
+        e.preventDefault();
+
+        search = document.getElementById('country').value;
+        
+        var httpRequest1 = new XMLHttpRequest(); 
+        var url1 = "http://localhost/info2180-lab5/world.php?country=&context=cities"+ search;
+        httpRequest1.open('GET', url1); 
+        httpRequest1.send();
+       
+        httpRequest1.onreadystatechange = function(){
+
+            if(httpRequest1.readyState === XMLHttpRequest.DONE){
+                if(httpRequest1.status === 200){
+                    var response1 = httpRequest1.responseText;
+                    document.getElementById('result').innerHTML= response1
+                }else{
+                    alert('There was a problem with the request')
+                }
+            }
+        }
+    })
 }
